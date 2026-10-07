@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security · Announcement Banners &amp; Read Confirmations</title>
+<meta name="description" content="Schedule, target and track announcements in Confluence — no Premium, no HTML.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><a class="brand" href="index.html">Announcement Banners &amp; Read Confirmations</a><nav><a href="index.html">Overview</a><a href="getting-started.html">Getting started</a><a href="read-confirmations.html">Read confirmations</a><a href="faq.html">FAQ</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="security.html" aria-current="page">Security</a><a href="terms.html">Terms</a></nav></header>
+<main>
+<h1 id="security">Security</h1>
+<h2 id="architecture">Architecture</h2>
+<ul><li>Built on <strong>Atlassian Forge</strong>. Code runs on Atlassian's infrastructure; there are no servers of ours.</li><li>Data is stored in <strong>Forge storage</strong> in your Atlassian cloud.</li><li><strong>No egress</strong>: the app declares no external domains and makes no calls outside Atlassian. It is eligible for Atlassian's "Runs on Atlassian" program.</li></ul>
+<h2 id="access-control">Access control</h2>
+<ul><li>Every management action is checked on the server against Confluence permissions: site banners require Confluence admin; space banners require admin of that space. Showing or hiding a settings page is never treated as permission.</li><li>Space admins can only see and change banners of their own space.</li><li>When a space admin lists members of a targeted group, the app reads with that admin's own Confluence permissions, so it never reveals a list they couldn't see in Confluence.</li><li>Viewers can only record a close or confirmation for a banner that is showing and is meant for them.</li></ul>
+<h2 id="data-handling">Data handling</h2>
+<ul><li>Banner messages are rendered as text with a small, safe formatting set (bold, links, line breaks). No HTML or scripts from banner content ever run. Links must be http(s) or mailto.</li><li>Importing a Data Center banner removes scripts, event handlers, styles and unsafe links.</li><li>CSV exports protect against spreadsheet formula injection.</li><li>Errors shown to admins never include internal details; details go only to the app's Forge logs.</li></ul>
+<h2 id="permissions-scopes">Permissions (scopes)</h2>
+<table><thead><tr><th>Scope</th><th>Why</th></tr></thead><tbody><tr><td>storage:app</td><td>Store banners and confirmations</td></tr><tr><td>read:confluence-user</td><td>Show names of people who confirmed</td></tr><tr><td>read:confluence-groups</td><td>Group targeting and "who hasn't confirmed"</td></tr><tr><td>read:confluence-space.summary, read:space:confluence</td><td>Space targeting and space admin checks</td></tr><tr><td>read:confluence-content.summary, read:page:confluence, read:blogpost:confluence, read:label:confluence</td><td>Page label targeting and page titles in insights</td></tr></tbody></table>
+<h2 id="reporting-a-vulnerability">Reporting a vulnerability</h2>
+<p>Email bobob.dev@gmail.com with "Security" in the subject. We acknowledge within 72 hours and fix critical issues as a priority.</p>
+</main>
+<footer>© 2026 Bobob Apps · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></footer>
+</body>
+</html>
